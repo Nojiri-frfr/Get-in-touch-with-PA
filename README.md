@@ -58,9 +58,11 @@ la langue : tout le reste de la page (liens, badges, pied de page) suit cet ID.
 
 Le bloc `carte` contrôle la carte « Profil Discord » : libellé, tag, rôle, serveur, membres,
 statut, dernière connexion, et les chemins d'avatar / bannière. Les images sont stockées dans
-`assets/discord/` : pour les rafraîchir (nouvel avatar), télécharge-les depuis le CDN Discord
-(l'URL contient le hash, visible en ouvrant ton profil dans un navigateur) et écrase les deux
-fichiers. Laisse le champ vide pour garder le dégradé par défaut.
+`assets/discord/` (`avatar.gif`, `banner.gif`) : ton avatar et ta bannière Discord étant animés,
+ce sont les GIF qui sont utilisés, sinon l'animation est perdue. La bannière pèse ~1,5 Mo et
+n'est chargée qu'à l'approche de la carte. Pour les rafraîchir, récupère les fichiers sur le CDN
+Discord (`.../avatars/<id>/<hash>.gif?size=256` et `.../banners/<id>/<hash>.gif?size=480`) et
+écrase-les. Laisse le champ vide pour garder le dégradé par défaut.
 
 ## Mode édition dans le navigateur
 

@@ -955,7 +955,7 @@ section {
   border-radius: 50%;
   background: conic-gradient(from 200deg, #ff3b30, #8b5cf6, #3b82f6, #22d3ee, #8b5cf6, #ff3b30);
   filter: blur(16px);
-  opacity: 0.5;
+  opacity: 0.38;
 }
 
 .dcard-avatar {

@@ -108,13 +108,35 @@ function renderCard() {
   const avatar = mediaSrc(c.avatar, "avatars", 256);
 
   const bannerNode = q("#dc-banner");
-  if (bannerNode && banner) {
+  const card = q(".dcard");
+
+  const paintBanner = () => {
+    if (!bannerNode || !banner) return;
     bannerNode.style.backgroundImage = `url("${banner}")`;
     const probe = new Image();
     probe.onerror = () => {
       bannerNode.style.backgroundImage = "";
     };
     probe.src = banner;
+  };
+
+  if (card && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          paintBanner();
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    io.observe(card);
+    setTimeout(() => {
+      paintBanner();
+      io.disconnect();
+    }, 2500);
+  } else {
+    paintBanner();
   }
 
   const avatarNode = q("#dc-avatar");
