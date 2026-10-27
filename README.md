@@ -64,9 +64,9 @@ Ouvre `index.html#edition` (ou ajoute `#edition` à l'URL) : un panneau permet d
 - modifier / ajouter / retirer des projets, avec un champ bio par projet ;
 - **Télécharger content.js** (ou copier le code), puis remplacer le `content.js` du dossier.
 
-C'est le moyen le plus simple de remplir les bios sans écrire de code. Le fichier téléchargé
-contient déjà les commentaires d'aide ; les listes « Bots » et « Résultats » sont conservées
-telles quelles, elles se modifient directement dans `content.js`.
+C'est le moyen le plus simple de remplir les bios sans écrire de code. Les listes « Bots » et
+« Résultats » sont conservées telles quelles, elles se modifient directement dans `content.js`.
+Le fichier généré est du code brut, sans commentaire : la documentation reste dans ce README.
 
 ## Thème
 

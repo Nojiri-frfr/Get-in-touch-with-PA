@@ -1,17 +1,4 @@
-/* ============================================================================
-   CONTENU DU SITE — c'est le seul fichier à modifier pour changer les textes.
-   ----------------------------------------------------------------------------
-   • Une fiche projet = un bloc { ... } dans la liste "projets"
-   • bio vide ("")  -> la carte affiche "Bio à venir."
-   • tags vide ([]) -> aucune étiquette affichée
-   • lien vide ("") -> le bouton pointe vers ton profil Discord
-   • Pas de virgule oubliée entre deux blocs, sinon la page reste blanche.
-   • Astuce : ouvre index.html#edition pour éditer dans le navigateur et
-     télécharger un content.js prêt à remplacer celui-ci.
-   ========================================================================== */
-
 window.SITE = {
-  /* ----------------------------- Profil ----------------------------- */
   profil: {
     nom: "Primary Asset",
     pseudo: "@primary-asset",
@@ -21,7 +8,6 @@ window.SITE = {
     langue: "FR",
   },
 
-  /* ---------------------------- Projets ----------------------------- */
   projets: [
     {
       nom: "Chell",
@@ -67,7 +53,6 @@ window.SITE = {
     },
   ],
 
-  /* ----------------------- Bots & communautés ----------------------- */
   bots: [
     { nom: "Chell", detail: "Bot Discord · créé par Primary Asset" },
     { nom: "Botillon", detail: "Botlist · catalogue de bots" },
@@ -78,7 +63,6 @@ window.SITE = {
     { nom: "Nd Protect", detail: "Bot de protection Discord" },
   ],
 
-  /* -------------------------- Résultats web ------------------------- */
   resultats: [
     {
       titre: "Profil Discord — Primary Asset",

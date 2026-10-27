@@ -1,8 +1,3 @@
-/* ------------------------------------------------------------------
-   Primary Asset — affichage et interactions
-   Le contenu (textes, projets, liens) n'est PAS ici : voir content.js
-   ------------------------------------------------------------------ */
-
 const SITE = window.SITE || {
   profil: {
     nom: "Primary Asset",
@@ -28,7 +23,6 @@ function el(tag, cls, text) {
 
 const pad = (n, size = 2) => String(n).padStart(size, "0");
 
-/** Lien externe : profil Discord si le champ "lien" est vide. */
 function linkFor(value) {
   const raw = (value || "").trim();
   if (!raw) return `https://discord.com/users/${SITE.profil.discordId}`;
@@ -45,8 +39,6 @@ function decorateLink(node, url) {
   if (isExternal(url)) node.target = "_blank";
   return node;
 }
-
-/* ------------------------------- Profil --------------------------- */
 
 function renderProfile() {
   const { nom, pseudo, discordId, accroche, langue } = SITE.profil;
@@ -92,8 +84,6 @@ function renderProfile() {
   });
 }
 
-/* ------------------------------ Projets --------------------------- */
-
 function renderProjects() {
   const host = q("#projects");
   if (!host) return;
@@ -127,8 +117,6 @@ function renderProjects() {
   const stat = q("#stat-projects");
   if (stat) stat.textContent = SITE.projets.length;
 }
-
-/* -------------------------- Bots / résultats ---------------------- */
 
 function renderBots() {
   const host = q("#bots-list");
@@ -182,8 +170,6 @@ function renderResults() {
   if (stat) stat.textContent = SITE.resultats.length;
 }
 
-/* -------------------------------- Thème --------------------------- */
-
 function initTheme() {
   const root = document.documentElement;
   const btn = q("#theme");
@@ -202,8 +188,6 @@ function initTheme() {
     );
   });
 }
-
-/* -------------------------------- Copie --------------------------- */
 
 function initCopy() {
   const btn = q("#copy");
@@ -224,8 +208,6 @@ function initCopy() {
   });
 }
 
-/* -------------------------------- Boot ---------------------------- */
-
 function initBoot() {
   const boot = q("#boot");
   if (!boot) return;
@@ -242,8 +224,6 @@ function initBoot() {
     done();
   });
 }
-
-/* ------------------------------- Reveal --------------------------- */
 
 function initReveal() {
   const targets = qa("[data-reveal]");
@@ -268,12 +248,6 @@ function initReveal() {
 
   targets.forEach((t) => io.observe(t));
 }
-
-/* ==================================================================
-   Mode édition — index.html#edition
-   Permet de modifier les bios et les projets, puis de télécharger un
-   content.js prêt à remplacer l'actuel.
-   ================================================================== */
 
 const str = (v) => JSON.stringify(v == null ? "" : String(v));
 
@@ -306,18 +280,7 @@ function serializeSite(site) {
     )
     .join("\n");
 
-  return `/* ============================================================================
-   CONTENU DU SITE — généré depuis le mode édition (index.html#edition)
-   ----------------------------------------------------------------------------
-   • une fiche projet = un bloc { ... } dans "projets"
-   • bio vide ("")  -> la carte affiche "Bio à venir."
-   • tags vide ([]) -> aucune étiquette affichée
-   • lien vide ("") -> le bouton pointe vers ton profil Discord
-   • attention aux virgules entre deux blocs, sinon la page reste blanche.
-   ========================================================================== */
-
-window.SITE = {
-  /* Profil */
+  return `window.SITE = {
   profil: {
     nom: ${str(p.nom)},
     pseudo: ${str(p.pseudo)},
@@ -327,17 +290,14 @@ window.SITE = {
     langue: ${str(p.langue)},
   },
 
-  /* Projets */
   projets: [
 ${projects}
   ],
 
-  /* Bots & communautés */
   bots: [
 ${bots}
   ],
 
-  /* Résultats web */
   resultats: [
 ${results}
   ],
@@ -368,7 +328,6 @@ function openEditor() {
 
   const body = el("div", "editor-body");
 
-  /* --- Profil --- */
   const profileBlock = el("fieldset", "editor-group");
   profileBlock.append(el("legend", null, "Profil"));
 
@@ -391,7 +350,6 @@ function openEditor() {
   profileBlock.append(nom.wrap, pseudo.wrap, discordId.wrap, accroche.wrap);
   body.append(profileBlock);
 
-  /* --- Projets --- */
   const projectsBlock = el("fieldset", "editor-group");
   projectsBlock.append(el("legend", null, "Projets"));
   const projectsList = el("div", "editor-projects");
@@ -427,7 +385,6 @@ function openEditor() {
   });
   projectsBlock.append(addBtn);
 
-  /* --- Actions --- */
   const actions = el("div", "editor-actions");
   const download = el("button", "btn btn-primary", "Télécharger content.js");
   const copyAll = el("button", "btn", "Copier le code");
@@ -509,8 +466,6 @@ function openEditor() {
 
   window.__serializeSite = serializeSite;
 }
-
-/* -------------------------------- Init ---------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
   renderProfile();
