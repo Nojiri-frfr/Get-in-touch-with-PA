@@ -14,39 +14,9 @@ const DATA = {
       url: "https://discord.com/users/" + DISCORD_ID,
     },
     {
-      name: "PA Assyst",
-      desc: "Assistant Discord en préparation : informations, réponses automatiques et accès anticipé pour les premiers testeurs.",
-      tags: ["IA", "Assistant"],
-      url: "https://discord.com/users/" + DISCORD_ID,
-    },
-    {
       name: "Botillon",
       desc: "Annuaire de bots Discord : catalogue vérifié à la main, dashboard, API ouverte, sans publicité ni paywall.",
       tags: ["Web", "Botlist"],
-      url: "https://discord.com/users/" + DISCORD_ID,
-    },
-    {
-      name: "Dispatch.IO",
-      desc: "Projet communautaire francophone : support, animation et présence terrain auprès des serveurs.",
-      tags: ["Communauté"],
-      url: "https://discord.com/users/" + DISCORD_ID,
-    },
-    {
-      name: "Link2Me",
-      desc: "Hub de liens encore sous embargo. Les détails sortiront quand la base sera stable.",
-      tags: ["Web", "En cours"],
-      url: "https://discord.com/users/" + DISCORD_ID,
-    },
-    {
-      name: "One Peek",
-      desc: "Plateforme de messages anonymes. Simple, direct, sans détour — le site reste en ligne.",
-      tags: ["Web"],
-      url: "https://discord.com/users/" + DISCORD_ID,
-    },
-    {
-      name: "WaveOut",
-      desc: "Application Android libre qui évacue l'eau et la poussière des haut-parleurs par des sons basses fréquences. Sans pubs, sans trackers.",
-      tags: ["Android", "FOSS"],
       url: "https://discord.com/users/" + DISCORD_ID,
     },
     {
@@ -56,27 +26,29 @@ const DATA = {
       url: "https://discord.com/users/" + DISCORD_ID,
     },
     {
-      name: "FrenchGG",
-      desc: "Plateforme communautaire francophone : profils, serveurs et mise en relation autour de Discord.",
-      tags: ["Communauté"],
-      url: "https://discord.com/users/" + DISCORD_ID,
-    },
-    {
       name: "Wheatley",
       desc: "Petit bot expérimental, pensé comme un laboratoire pour tester des idées d'interactions.",
       tags: ["Bot", "Test"],
       url: "https://discord.com/users/" + DISCORD_ID,
     },
+
+    // --- À compléter : bio, tags et URL ---
     {
-      name: "AlloStaff",
-      desc: "Profil et présence sur une plateforme de recrutement staff : avis, rôles et expériences Discord.",
-      tags: ["Communauté"],
+      name: "Eminium",
+      desc: "Bio à venir.",
+      tags: [],
       url: "https://discord.com/users/" + DISCORD_ID,
     },
     {
-      name: "Startpage",
-      desc: "Page d'accueil personnelle minimaliste : raccourcis, recherche et accès rapide aux projets.",
-      tags: ["Web", "Outil"],
+      name: "NationsEmpire",
+      desc: "Bio à venir.",
+      tags: [],
+      url: "https://discord.com/users/" + DISCORD_ID,
+    },
+    {
+      name: "Nd Protect",
+      desc: "Bio à venir.",
+      tags: [],
       url: "https://discord.com/users/" + DISCORD_ID,
     },
   ],
