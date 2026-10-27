@@ -1039,6 +1039,49 @@ section {
   color: #3ba55d;
 }
 
+.dcard-live-row {
+  margin: 10px 0 0;
+}
+
+.dcard-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: #c3cedb;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.dcard-switch:hover {
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.dcard-switch-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8b9aab;
+}
+
+.dcard-switch[aria-pressed="true"] .dcard-switch-dot {
+  background: #3ddc97;
+  box-shadow: 0 0 8px #3ddc97;
+}
+
+.dcard-live.is-off .dcard-dot {
+  animation: none;
+  opacity: 0.4;
+  box-shadow: none;
+}
+
 .dcard-rows {
   padding: 4px 0;
 }

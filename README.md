@@ -83,9 +83,7 @@ Clair/sombre via le bouton ◐ de l'en-tête, mémorisé dans `localStorage`, av
 
 ## Détails
 
-- Aucun tracker, aucun cookie, **aucune requête vers un tiers** : polices (`assets/fonts/`),
-  avatar et bannière (`assets/discord/`) sont servis par le site lui-même. Les polices Space
-  Grotesk et JetBrains Mono sont distribuées sous licence SIL Open Font License.
+- Aucun tracker, aucun cookie, **aucune requête vers un tiers par défaut** : polices (`assets/fonts/`), avatar et bannière (`assets/discord/`) sont servis par le site lui-même. Le seul tiers contacté est l'API Lanyard (statut Discord en direct), et seulement si tu cliques sur le bouton « Activer le statut en direct » sur la carte.
 - Responsive jusqu'à 360 px, navigation par ancres, lien d'évitement clavier.
 - `prefers-reduced-motion` respecté partout.
 
@@ -99,13 +97,25 @@ aucun cookie et n'appelle aucun service tiers :
 | Polices | Space Grotesk et JetBrains Mono téléchargées et servies en local (`assets/fonts/fonts.css`) |
 | Images de profil | Avatar et bannière hébergés dans `assets/discord/` |
 | Cookies | Aucun. Pas de mesure d'audience, pas de pixel, pas de CDN externe |
-| Stockage local | Uniquement le thème choisi, et seulement après un clic sur ◐ (aucune donnée personnelle) |
 | Hébergeur | GitHub Pages (GitHub, Inc., États-Unis) : journaux techniques avec IP, décrits dans la politique |
+| Stockage local | Uniquement le thème choisi et l'activation du statut en direct, et seulement après un clic sur ◐ ou sur le bouton de la carte (aucune donnée personnelle) |
+| Statut en direct (Lanyard) | L'API `api.lanyard.rest` n'est appelée que si le visiteur clique sur « Activer le statut en direct » ; consentement retirable à tout moment. Détail dans `confidentialite.html` |
 | Information | Page `confidentialite.html` : responsable, finalités, base légale, transferts, durées, droits, CNIL, mentions légales |
 
 Si tu ajoutes plus tard un service externe (police distante, carte, vidéo YouTube, statistiques,
 formulaire), la conformité tombe : il faudra soit l'héberger en local, soit demander le
 consentement avant chargement. `confidentialite.html` doit alors être mis à jour.
+
+## Statut en direct via Lanyard
+
+La carte Discord affiche par défaut les valeurs saisies à la main dans `content.js` (`statut`, `connexion`). Pour qu'elle affiche le vrai statut Discord en temps réel, il faut :
+
+1. Rejoindre le serveur **discord.gg/lanyard** (le bot Lanyard doit pouvoir voir le statut du compte `1156589290252419212`).
+2. Sur le site, cliquer sur « Activer le statut en direct » sur la carte Profil Discord.
+
+Dès l'activation, le site interroge `https://api.lanyard.rest/v1/users/1156589290252419212` toutes les 30 secondes (pause quand l'onglet est en arrière-plan) et met à jour le statut, le point couleur et l'activité affichés (Spotify inclus). Le choix est mémorisé dans `localStorage` (clé `pa-live`) et peut être retiré à tout moment en recliquant sur le bouton. Aucune donnée personnelle n'est envoyée à Lanyard au-delà de l'ID Discord public et de l'adresse IP de la requête ; le détail figure dans `confidentialite.html`.
+
+Sans cette activation, la page ne contacte aucun serveur tiers (pas de requête Lanyard, pas de cookie).
 
 ## Origine
 

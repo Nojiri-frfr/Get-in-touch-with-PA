@@ -6,7 +6,7 @@
     <title>Confidentialité et mentions légales — Primary Asset</title>
     <meta
       name="description"
-      content="Politique de confidentialité du site Primary Asset : aucune collecte de données, aucun cookie, aucun traceur."
+      content="Politique de confidentialité du site Primary Asset : aucune collecte de données, aucun cookie, aucun traceur par défaut."
     />
     <meta name="theme-color" content="#07090c" />
     <meta name="color-scheme" content="dark light" />
@@ -66,12 +66,8 @@
 
       <h2>Cookies et stockage local</h2>
       <p>
-        Aucun cookie n'est posé. Le site utilise uniquement le stockage local du navigateur
-        (<code>localStorage</code>) pour mémoriser ta préférence de thème clair ou sombre, et
-        seulement si tu cliques sur le bouton ◐. Cette information reste dans ton navigateur, n'est
-        jamais transmise et ne contient aucune donnée personnelle. Tu peux la supprimer à tout
-        moment en effaçant les données du site. Le thème suit par défaut les réglages de ton
-        système.
+        Aucun cookie n'est posé. Le site utilise uniquement le stockage local du navigateur (<code>localStorage</code>) pour mémoriser deux préférences, seulement si tu agis :
+la préférence de thème clair ou sombre (bouton ◐) et l'activation du statut en direct sur le profil Discord (bouton « Activer le statut en direct »). Ces informations restent dans ton navigateur, ne sont jamais transmises et ne contiennent aucune donnée personnelle. Tu peux les supprimer à tout moment en effaçant les données du site. Le thème suit par défaut les réglages de ton système.
       </p>
 
       <h2>Hébergement et journaux techniques</h2>
@@ -93,10 +89,16 @@
 
       <h2>Ressources chargées par la page</h2>
       <p>
-        Les polices d'écriture, l'avatar et la bannière sont hébergés sur ce domaine : afficher une
-        page ne contacte aucun serveur tiers. Les seuls liens vers l'extérieur sont ceux que tu
-        choisis d'ouvrir (profil Discord, sites des projets), qui appliquent alors leurs propres
-        politiques de confidentialité.
+        Les polices d'écriture, l'avatar et la bannière sont hébergés sur ce domaine : afficher une page ne contacte aucun serveur tiers. Les seuls liens vers l'extérieur sont ceux que tu choisis d'ouvrir (profil Discord, sites des projets), qui appliquent alors leurs propres politiques de confidentialité.
+
+<h2>Statut en direct (optionnel)</h2>
+<p>
+Sur le profil Discord, le statut (en ligne / inactif / ne pas déranger / hors ligne) et l'activité en cours peuvent être affichés en temps réel via le service
+<a href="https://lanyard.rest" rel="noopener">Lanyard</a> (API publique). Ce tiers n'est contacté <strong>uniquement si tu cliques sur le bouton « Activer le statut en direct »</strong> : c'est ton consentement (article 6.1.a du RGPD). À ce moment, le navigateur envoie à Lanyard ton adresse IP et ton ID Discord public (1156589290252419212) afin de récupérer les informations de présence publiquement affichées sur ton profil Discord. Aucun cookie n'est utilisé et Lanyard n'est pas informé de ta visite sur ce site en dehors de cette requête.
+</p>
+<p>
+Le statut en direct se désactive en recliquant sur le bouton (ou en effaçant les données du site, ce qui supprime le choix mémorisé). Lanyard ne fournit pas d'historique de connexion ("dernière connexion"), seul le statut instantané et l'activité en cours sont affichés. Tu peux révoquer ton consentement à tout moment ; le site revient alors aux valeurs saisies manuellement et ne contacte plus Lanyard.
+</p>
       </p>
 
       <h2>Durées de conservation</h2>

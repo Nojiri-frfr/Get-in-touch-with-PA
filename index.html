@@ -121,6 +121,13 @@
               <span id="dc-time">00:00:00</span>
               <span class="dcard-state" id="dc-state">HORS LIGNE</span>
             </p>
+
+            <p class="dcard-live-row">
+              <button id="dc-live-toggle" class="dcard-switch" type="button" aria-pressed="false">
+                <span class="dcard-switch-dot" aria-hidden="true"></span>
+                <span id="dc-live-text">Activer le statut en direct</span>
+              </button>
+            </p>
           </div>
 
           <div class="dcard-rows">
@@ -129,7 +136,7 @@
             <div class="dcard-row"><span class="k">Rôle</span><span class="v" id="dc-role">—</span></div>
             <div class="dcard-row"><span class="k">Serveur</span><span class="v" id="dc-serveur">—</span></div>
             <div class="dcard-row"><span class="k">Membres</span><span class="v" id="dc-membres">—</span></div>
-            <div class="dcard-row"><span class="k">Dernière connexion</span><span class="v" id="dc-connexion">—</span></div>
+            <div class="dcard-row"><span class="k" id="dc-connexion-k">Dernière connexion</span><span class="v" id="dc-connexion">—</span></div>
           </div>
 
           <footer class="dcard-foot">

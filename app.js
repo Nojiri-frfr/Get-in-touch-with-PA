@@ -186,6 +186,165 @@ function initClock() {
   setInterval(tick, 1000);
 }
 
+const LANYARD_URL = "https://api.lanyard.rest/v1/users/";
+
+const LIVE_STATUS = {
+  online: { label: "EN LIGNE", color: "#3ddc97" },
+  idle: { label: "INACTIF", color: "#f0b232" },
+  dnd: { label: "NE PAS DÉRANGER", color: "#f23f43" },
+  offline: { label: "HORS LIGNE", color: "#8b9aab" },
+};
+
+let liveTimer = null;
+
+async function fetchPresence() {
+  const res = await fetch(LANYARD_URL + SITE.profil.discordId, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Lanyard ${res.status}`);
+  const payload = await res.json();
+  if (!payload.success || !payload.data) throw new Error("Lanyard indisponible");
+  return payload.data;
+}
+
+function paintPresence(data) {
+  const status = LIVE_STATUS[data.discord_status] || LIVE_STATUS.offline;
+
+  const statut = q("#dc-statut");
+  if (statut) {
+    statut.textContent = status.label;
+    statut.style.color = status.color;
+  }
+
+  const state = q("#dc-state");
+  if (state) {
+    state.textContent = status.label;
+    state.style.color = status.color;
+  }
+
+  const dot = q("#dc-dot");
+  if (dot) {
+    dot.style.background = status.color;
+    dot.classList.toggle("is-on", data.discord_status !== "offline");
+  }
+
+  q(".dcard-live")?.classList.toggle("is-off", data.discord_status === "offline");
+
+  const activity = (data.activities || []).find((item) => item.name);
+  const label = q("#dc-connexion-k");
+  if (label) label.textContent = "Activité";
+
+  const value = q("#dc-connexion");
+  if (value) {
+    value.textContent = data.listening_to_spotify ? "Spotify" : activity ? activity.name : "Aucune";
+  }
+
+  const text = q("#dc-live-text");
+  if (text) {
+    const time = new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+    text.textContent = `Direct · ${time}`;
+  }
+}
+
+function resetPresence() {
+  const c = SITE.carte || {};
+
+  const statut = q("#dc-statut");
+  if (statut) {
+    statut.textContent = c.statut || "HORS LIGNE";
+    statut.style.color = "";
+  }
+
+  const state = q("#dc-state");
+  if (state) {
+    state.textContent = c.statut || "HORS LIGNE";
+    state.style.color = "";
+    state.classList.toggle("is-on", /en ligne|online/i.test(c.statut || ""));
+  }
+
+  const dot = q("#dc-dot");
+  if (dot) {
+    dot.style.background = "";
+    dot.classList.toggle("is-on", /en ligne|online/i.test(c.statut || ""));
+  }
+
+  q(".dcard-live")?.classList.remove("is-off");
+
+  const label = q("#dc-connexion-k");
+  if (label) label.textContent = "Dernière connexion";
+
+  const value = q("#dc-connexion");
+  if (value) value.textContent = c.connexion || "—";
+}
+
+async function refreshPresence(first = false) {
+  try {
+    paintPresence(await fetchPresence());
+  } catch {
+    if (!first) return;
+    stopPresence(true);
+    const text = q("#dc-live-text");
+    if (text) text.textContent = "Direct indisponible";
+    setTimeout(() => {
+      const node = q("#dc-live-text");
+      if (node) node.textContent = "Activer le statut en direct";
+    }, 2600);
+  }
+}
+
+function startPresence(persist = true) {
+  const btn = q("#dc-live-toggle");
+  if (!btn) return;
+
+  btn.setAttribute("aria-pressed", "true");
+  if (persist) localStorage.setItem("pa-live", "1");
+
+  const text = q("#dc-live-text");
+  if (text) text.textContent = "Connexion au direct…";
+
+  refreshPresence(true);
+
+  clearInterval(liveTimer);
+  liveTimer = setInterval(() => {
+    if (!document.hidden) refreshPresence();
+  }, 30000);
+}
+
+function stopPresence(keepLabel = false) {
+  const btn = q("#dc-live-toggle");
+  if (btn) btn.setAttribute("aria-pressed", "false");
+
+  clearInterval(liveTimer);
+  liveTimer = null;
+  localStorage.removeItem("pa-live");
+  resetPresence();
+
+  if (!keepLabel) {
+    const text = q("#dc-live-text");
+    if (text) text.textContent = "Activer le statut en direct";
+  }
+}
+
+function initPresence() {
+  const btn = q("#dc-live-toggle");
+  if (!btn) return;
+
+  if (!("fetch" in window)) {
+    btn.hidden = true;
+    return;
+  }
+
+  btn.addEventListener("click", () => {
+    const active = btn.getAttribute("aria-pressed") === "true";
+    if (active) stopPresence();
+    else startPresence();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && liveTimer) refreshPresence();
+  });
+
+  if (localStorage.getItem("pa-live") === "1") startPresence(false);
+}
+
 function renderProjects() {
   const host = q("#projects");
   if (!host) return;
@@ -594,6 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initBoot();
   initReveal();
   initClock();
+  initPresence();
 
   const year = q("#year");
   if (year) year.textContent = new Date().getFullYear();
