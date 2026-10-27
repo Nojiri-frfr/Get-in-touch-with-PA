@@ -72,11 +72,12 @@ window.SITE = {
   /* ----------------------- Bots & communautés ----------------------- */
   bots: [
     { nom: "Chell", detail: "Bot Discord · créé par Primary Asset" },
-    { nom: "PA Assyst", detail: "Bot Discord · en préparation" },
-    { nom: "Dispatch.IO", detail: "Communauté · support et animation" },
     { nom: "Botillon", detail: "Botlist · catalogue de bots" },
     { nom: "La place de PA", detail: "Serveur communautaire" },
-    { nom: "FrenchGG", detail: "Communauté francophone" },
+    { nom: "Wheatley", detail: "Bot Discord · expérimental" },
+    { nom: "Eminium", detail: "" },
+    { nom: "NationsEmpire", detail: "" },
+    { nom: "Nd Protect", detail: "" },
   ],
 
   /* -------------------------- Résultats web ------------------------- */
@@ -89,7 +90,7 @@ window.SITE = {
     },
     {
       titre: "Chell",
-      detail: "Fiche du bot : modération, outils communautaires et gestion de serveur.",
+      detail: "Bot Discord français orienté modération et outils communautaires.",
       lien: "",
       etiquette: "Projet",
     },
@@ -100,20 +101,32 @@ window.SITE = {
       etiquette: "Projet",
     },
     {
-      titre: "Dispatch.IO",
-      detail: "Communauté francophone et support autour de Discord.",
+      titre: "La place de PA",
+      detail: "Serveur Discord communautaire, ouvert au public.",
       lien: "",
       etiquette: "Projet",
     },
     {
-      titre: "One Peek",
-      detail: "Messages anonymes, sans compte à créer.",
+      titre: "Wheatley",
+      detail: "Bot expérimental, laboratoire d'idées d'interactions.",
       lien: "",
       etiquette: "Projet",
     },
     {
-      titre: "WaveOut",
-      detail: "Application Android libre, sans traqueur.",
+      titre: "Eminium",
+      detail: "Bio à venir.",
+      lien: "",
+      etiquette: "Projet",
+    },
+    {
+      titre: "NationsEmpire",
+      detail: "Bio à venir.",
+      lien: "",
+      etiquette: "Projet",
+    },
+    {
+      titre: "Nd Protect",
+      detail: "Bio à venir.",
       lien: "",
       etiquette: "Projet",
     },
