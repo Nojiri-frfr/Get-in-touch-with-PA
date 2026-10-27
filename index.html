@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Primary Asset — Portfolio Discord, projets et bots</title>
+    <meta
+      name="description"
+      content="Portfolio Discord de Primary Asset : projets, bots, communautés et contact. Discord : 1156589290252419212."
+    />
+    <meta name="theme-color" content="#07090c" />
+    <meta name="color-scheme" content="dark light" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Primary Asset — Portfolio Discord" />
+    <meta
+      property="og:description"
+      content="Projets, bots, communautés et contact de Primary Asset."
+    />
+    <meta property="og:locale" content="fr_FR" />
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="boot" class="boot" aria-hidden="true">
+      <div class="boot-inner">
+        <p class="boot-word">PRIMARY <em>ASSET</em></p>
+        <span class="boot-line"></span>
+        <p class="boot-note">Chargement du profil Discord</p>
+      </div>
+    </div>
+
+    <a class="skip" href="#main">Aller au contenu</a>
+
+    <header class="site-head">
+      <div class="wrap head-row">
+        <a class="brand" href="#top">
+          <span class="brand-mark">PA</span>
+          <span class="brand-name">Primary Asset</span>
+        </a>
+
+        <nav class="nav" aria-label="Navigation principale">
+          <a href="#projets">Projets</a>
+          <a href="#bots">Bots</a>
+          <a href="#resultats">Résultats</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="head-actions">
+          <button id="theme" class="icon-btn" type="button" aria-label="Changer de thème">
+            <span aria-hidden="true">◐</span>
+          </button>
+          <a class="btn btn-sm" href="https://discord.com/users/1156589290252419212" rel="me noopener">
+            Discord
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero wrap">
+        <p class="eyebrow">Portfolio Discord · FR</p>
+        <h1>Primary <span>/</span> Asset</h1>
+        <p class="lede">
+          Je construis des bots et des sites, et je fais vivre des communautés Discord.
+          Toujours un projet en cours, toujours quelque chose à tester.
+        </p>
+
+        <div class="badges">
+          <span class="badge">@primary-asset</span>
+          <span class="badge" id="badge-id">1156589290252419212</span>
+          <span class="badge">Bots Discord</span>
+          <span class="badge">Communautés</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="https://discord.com/users/1156589290252419212" rel="me noopener">
+            Me contacter
+          </a>
+          <a class="btn" href="#projets">Voir les projets</a>
+          <a class="btn btn-ghost" href="#resultats">Les résultats</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><b id="stat-projects">0</b><small>Projets</small></div>
+          <div class="stat"><b id="stat-bots">0</b><small>Bots &amp; communautés</small></div>
+          <div class="stat"><b id="stat-results">0</b><small>Résultats web</small></div>
+          <div class="stat"><b>FR</b><small>Langue</small></div>
+        </div>
+      </section>
+
+      <section id="projets" class="wrap" data-reveal>
+        <div class="sec-head">
+          <h2>Projets</h2>
+          <a href="#contact">Un projet en tête ?</a>
+        </div>
+        <div id="projects" class="cards"></div>
+      </section>
+
+      <section id="bots" class="wrap" data-reveal>
+        <div class="sec-head">
+          <h2>Bots &amp; communautés</h2>
+          <a href="https://discord.com/users/1156589290252419212" rel="me noopener">Profil Discord</a>
+        </div>
+        <ul id="bots-list" class="list"></ul>
+      </section>
+
+      <section id="resultats" class="wrap" data-reveal>
+        <div class="sec-head">
+          <h2>Résultats web</h2>
+          <span class="sec-note">Liens publics</span>
+        </div>
+        <ul id="results-list" class="list"></ul>
+      </section>
+
+      <section id="contact" class="wrap" data-reveal>
+        <div class="sec-head">
+          <h2>Contact</h2>
+          <span class="sec-note">Réponse sur Discord</span>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-txt">
+            <p class="eyebrow">Discord</p>
+            <p class="contact-id">
+              <span id="discord-id">1156589290252419212</span>
+              <button id="copy" class="btn btn-sm" type="button" data-copy="1156589290252419212">
+                Copier
+              </button>
+            </p>
+            <p class="contact-hint">
+              Le plus simple : le profil Discord ci-dessus, ou l'identifiant à ajouter
+              directement. Aucun formulaire, aucun email.
+            </p>
+          </div>
+          <a class="btn btn-primary contact-cta" href="https://discord.com/users/1156589290252419212" rel="me noopener">
+            Ouvrir le profil
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot wrap">
+      <p>© <span id="year">2026</span> Primary Asset · <span class="mono">1156589290252419212</span></p>
+      <p class="foot-note">Site statique, sans tracker ni cookie.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
