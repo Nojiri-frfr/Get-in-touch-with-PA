@@ -67,21 +67,21 @@
     <main id="main">
       <section id="top" class="hero wrap">
         <p class="eyebrow">Portfolio Discord · FR</p>
-        <h1>Primary <span>/</span> Asset</h1>
-        <p class="lede">
+        <h1 id="titre">Primary <span class="slash">/</span> Asset</h1>
+        <p class="lede" id="accroche">
           Je construis des bots et des sites, et je fais vivre des communautés Discord.
           Toujours un projet en cours, toujours quelque chose à tester.
         </p>
 
         <div class="badges">
-          <span class="badge">@primary-asset</span>
+          <span class="badge" id="pseudo">@primary-asset</span>
           <span class="badge" id="badge-id">1156589290252419212</span>
           <span class="badge">Bots Discord</span>
           <span class="badge">Communautés</span>
         </div>
 
         <div class="cta">
-          <a class="btn btn-primary" href="https://discord.com/users/1156589290252419212" rel="me noopener">
+          <a class="btn btn-primary" data-discord href="https://discord.com/users/1156589290252419212" rel="me noopener">
             Me contacter
           </a>
           <a class="btn" href="#projets">Voir les projets</a>
@@ -92,7 +92,7 @@
           <div class="stat"><b id="stat-projects">0</b><small>Projets</small></div>
           <div class="stat"><b id="stat-bots">0</b><small>Bots &amp; communautés</small></div>
           <div class="stat"><b id="stat-results">0</b><small>Résultats web</small></div>
-          <div class="stat"><b>FR</b><small>Langue</small></div>
+          <div class="stat"><b id="stat-langue">FR</b><small>Langue</small></div>
         </div>
       </section>
 
@@ -107,7 +107,7 @@
       <section id="bots" class="wrap" data-reveal>
         <div class="sec-head">
           <h2>Bots &amp; communautés</h2>
-          <a href="https://discord.com/users/1156589290252419212" rel="me noopener">Profil Discord</a>
+          <a data-discord href="https://discord.com/users/1156589290252419212" rel="me noopener">Profil Discord</a>
         </div>
         <ul id="bots-list" class="list"></ul>
       </section>
@@ -140,7 +140,7 @@
               directement. Aucun formulaire, aucun email.
             </p>
           </div>
-          <a class="btn btn-primary contact-cta" href="https://discord.com/users/1156589290252419212" rel="me noopener">
+          <a class="btn btn-primary contact-cta" data-discord href="https://discord.com/users/1156589290252419212" rel="me noopener">
             Ouvrir le profil
           </a>
         </div>
@@ -148,10 +148,11 @@
     </main>
 
     <footer class="site-foot wrap">
-      <p>© <span id="year">2026</span> Primary Asset · <span class="mono">1156589290252419212</span></p>
+      <p>© <span id="year">2026</span> Primary Asset · <span class="mono" id="foot-id">1156589290252419212</span></p>
       <p class="foot-note">Site statique, sans tracker ni cookie.</p>
     </footer>
 
+    <script src="content.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
