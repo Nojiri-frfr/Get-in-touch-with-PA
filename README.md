@@ -16,7 +16,18 @@ Identité affichée : **Primary Asset** · Discord `1156589290252419212`
 | `styles.css` | Thème, mise en page, animations |
 | `icon.svg` | Favicon |
 
-## Lancer
+## En ligne
+
+Site publié via GitHub Pages : **https://nojiri-frfr.github.io/Get-in-touch-with-PA/**
+
+Chaque `git push` sur `main` redéploie le site en une trentaine de secondes (source : branche
+`main`, racine du dépôt). Le fichier `.nojekyll` évite tout traitement Jekyll.
+
+Le mode `#edition` fonctionne aussi en ligne, mais il ne modifie que le navigateur : il faut
+télécharger le `content.js` généré, le déposer dans le dossier local, puis commit + push pour que
+la version publique change.
+
+## Lancer en local
 
 Double-clique sur `index.html` : tout fonctionne en local, sans serveur.
 
