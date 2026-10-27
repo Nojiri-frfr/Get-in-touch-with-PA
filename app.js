@@ -90,6 +90,13 @@ function cdnUrl(kind, hash, size) {
   return `https://cdn.discordapp.com/${kind}/${id}/${hash}.webp?size=${size}`;
 }
 
+function mediaSrc(value, kind, size) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw) || raw.includes("/")) return raw;
+  return cdnUrl(kind, raw, size);
+}
+
 function renderCard() {
   const c = SITE.carte || {};
   const set = (sel, value) => {
@@ -97,8 +104,8 @@ function renderCard() {
     if (node && value != null) node.textContent = value;
   };
 
-  const banner = cdnUrl("banners", c.banniere, 1024);
-  const avatar = cdnUrl("avatars", c.avatar, 256);
+  const banner = mediaSrc(c.banniere, "banners", 1024);
+  const avatar = mediaSrc(c.avatar, "avatars", 256);
 
   const bannerNode = q("#dc-banner");
   if (bannerNode && banner) {

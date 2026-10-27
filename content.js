@@ -17,8 +17,8 @@ window.SITE = {
     enLigne: "6",
     statut: "HORS LIGNE",
     connexion: "il y a 4 heures",
-    avatar: "a_f705e34dc608640dee48dd7209bcf333",
-    banniere: "a_b4a9a9f12397b28c694973b927e2f6b0",
+    avatar: "assets/discord/avatar.webp",
+    banniere: "assets/discord/banner.webp",
   },
 
   projets: [

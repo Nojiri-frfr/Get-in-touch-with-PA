@@ -57,9 +57,10 @@ Le bloc `profil` en haut contrôle le nom affiché, le pseudo, l'ID Discord, la 
 la langue : tout le reste de la page (liens, badges, pied de page) suit cet ID.
 
 Le bloc `carte` contrôle la carte « Profil Discord » : libellé, tag, rôle, serveur, membres,
-statut, dernière connexion, et les hashes d'avatar / bannière (récupérables en ouvrant ton profil
-Discord dans un navigateur, l'URL de l'image contient le hash). Laisse un hash vide pour garder le
-dégradé par défaut.
+statut, dernière connexion, et les chemins d'avatar / bannière. Les images sont stockées dans
+`assets/discord/` : pour les rafraîchir (nouvel avatar), télécharge-les depuis le CDN Discord
+(l'URL contient le hash, visible en ouvrant ton profil dans un navigateur) et écrase les deux
+fichiers. Laisse le champ vide pour garder le dégradé par défaut.
 
 ## Mode édition dans le navigateur
 
@@ -80,10 +81,29 @@ Clair/sombre via le bouton ◐ de l'en-tête, mémorisé dans `localStorage`, av
 
 ## Détails
 
-- Aucun tracker, aucun cookie. Seules requêtes tierces : les polices Google Fonts et, pour la
-  carte de profil, les images d'avatar et de bannière servies par le CDN Discord.
+- Aucun tracker, aucun cookie, **aucune requête vers un tiers** : polices (`assets/fonts/`),
+  avatar et bannière (`assets/discord/`) sont servis par le site lui-même. Les polices Space
+  Grotesk et JetBrains Mono sont distribuées sous licence SIL Open Font License.
 - Responsive jusqu'à 360 px, navigation par ancres, lien d'évitement clavier.
 - `prefers-reduced-motion` respecté partout.
+
+## RGPD
+
+Le site a été rendu conforme au RGPD / ePrivacy sans bandeau de consentement, parce qu'il ne pose
+aucun cookie et n'appelle aucun service tiers :
+
+| Point | Mise en œuvre |
+|---|---|
+| Polices | Space Grotesk et JetBrains Mono téléchargées et servies en local (`assets/fonts/fonts.css`) |
+| Images de profil | Avatar et bannière hébergés dans `assets/discord/` |
+| Cookies | Aucun. Pas de mesure d'audience, pas de pixel, pas de CDN externe |
+| Stockage local | Uniquement le thème choisi, et seulement après un clic sur ◐ (aucune donnée personnelle) |
+| Hébergeur | GitHub Pages (GitHub, Inc., États-Unis) : journaux techniques avec IP, décrits dans la politique |
+| Information | Page `confidentialite.html` : responsable, finalités, base légale, transferts, durées, droits, CNIL, mentions légales |
+
+Si tu ajoutes plus tard un service externe (police distante, carte, vidéo YouTube, statistiques,
+formulaire), la conformité tombe : il faudra soit l'héberger en local, soit demander le
+consentement avant chargement. `confidentialite.html` doit alors être mis à jour.
 
 ## Origine
 
