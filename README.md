@@ -10,7 +10,7 @@ Identité affichée : **Primary Asset** · Discord `1156589290252419212`
 
 | Fichier | Rôle |
 |---|---|
-| `content.js` | **Tout le contenu à modifier** : profil, projets, bios, bots, résultats |
+| `content.js` | **Tout le contenu à modifier** : profil, carte Discord, projets, bios, bots, résultats |
 | `index.html` | Structure de la page |
 | `app.js` | Affichage et interactions (à ne pas toucher pour changer les textes) |
 | `styles.css` | Thème, mise en page, animations |
@@ -56,6 +56,11 @@ Règles simples :
 Le bloc `profil` en haut contrôle le nom affiché, le pseudo, l'ID Discord, la phrase d'accueil et
 la langue : tout le reste de la page (liens, badges, pied de page) suit cet ID.
 
+Le bloc `carte` contrôle la carte « Profil Discord » : libellé, tag, rôle, serveur, membres,
+statut, dernière connexion, et les hashes d'avatar / bannière (récupérables en ouvrant ton profil
+Discord dans un navigateur, l'URL de l'image contient le hash). Laisse un hash vide pour garder le
+dégradé par défaut.
+
 ## Mode édition dans le navigateur
 
 Ouvre `index.html#edition` (ou ajoute `#edition` à l'URL) : un panneau permet de
@@ -75,7 +80,8 @@ Clair/sombre via le bouton ◐ de l'en-tête, mémorisé dans `localStorage`, av
 
 ## Détails
 
-- Aucun tracker, aucun cookie, aucune requête tierce à part les polices Google Fonts.
+- Aucun tracker, aucun cookie. Seules requêtes tierces : les polices Google Fonts et, pour la
+  carte de profil, les images d'avatar et de bannière servies par le CDN Discord.
 - Responsive jusqu'à 360 px, navigation par ancres, lien d'évitement clavier.
 - `prefers-reduced-motion` respecté partout.
 

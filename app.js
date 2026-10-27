@@ -84,6 +84,79 @@ function renderProfile() {
   });
 }
 
+function cdnUrl(kind, hash, size) {
+  const id = SITE.profil.discordId;
+  if (!hash || !id) return "";
+  return `https://cdn.discordapp.com/${kind}/${id}/${hash}.webp?size=${size}`;
+}
+
+function renderCard() {
+  const c = SITE.carte || {};
+  const set = (sel, value) => {
+    const node = q(sel);
+    if (node && value != null) node.textContent = value;
+  };
+
+  const banner = cdnUrl("banners", c.banniere, 1024);
+  const avatar = cdnUrl("avatars", c.avatar, 256);
+
+  const bannerNode = q("#dc-banner");
+  if (bannerNode && banner) {
+    bannerNode.style.backgroundImage = `url("${banner}")`;
+    const probe = new Image();
+    probe.onerror = () => {
+      bannerNode.style.backgroundImage = "";
+    };
+    probe.src = banner;
+  }
+
+  const avatarNode = q("#dc-avatar");
+  if (avatarNode) {
+    avatarNode.setAttribute("aria-label", `Avatar Discord de ${SITE.profil.nom}`);
+    if (avatar) {
+      avatarNode.style.backgroundImage = `url("${avatar}")`;
+      const probe = new Image();
+      probe.onerror = () => {
+        avatarNode.style.backgroundImage = "";
+      };
+      probe.src = avatar;
+    }
+  }
+
+  set("#dc-label", c.label || "PROFIL DISCORD");
+  set("#dc-id", SITE.profil.discordId);
+  set("#dc-statut", c.statut || "HORS LIGNE");
+  set("#dc-state", c.statut || "HORS LIGNE");
+  set("#dc-tag", c.tag ? `🇫🇷 ${c.tag}` : "");
+  set("#dc-role", c.role || "—");
+  set("#dc-serveur", c.serveur || "—");
+  set("#dc-membres", c.membres ? `${c.membres}${c.enLigne ? ` · ${c.enLigne} en ligne` : ""}` : "—");
+  set("#dc-connexion", c.connexion || "—");
+  set("#dc-langue", SITE.profil.langue);
+
+  const online = /en ligne|online/i.test(c.statut || "");
+  q("#dc-dot")?.classList.toggle("is-on", online);
+  q("#dc-state")?.classList.toggle("is-on", online);
+
+  set("#dc-projets", SITE.projets.length);
+  set("#dc-resultats", SITE.resultats.length);
+}
+
+function initClock() {
+  const dateNode = q("#dc-date");
+  const timeNode = q("#dc-time");
+  if (!dateNode || !timeNode) return;
+
+  const tick = () => {
+    const now = new Date();
+    dateNode.textContent = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+    timeNode.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+  };
+
+  tick();
+  setInterval(tick, 1000);
+}
+
 function renderProjects() {
   const host = q("#projects");
   if (!host) return;
@@ -253,6 +326,7 @@ const str = (v) => JSON.stringify(v == null ? "" : String(v));
 
 function serializeSite(site) {
   const p = site.profil;
+  const c = site.carte || {};
 
   const projects = site.projets
     .map(
@@ -288,6 +362,19 @@ function serializeSite(site) {
     accroche:
       ${str(p.accroche)},
     langue: ${str(p.langue)},
+  },
+
+  carte: {
+    label: ${str(c.label)},
+    tag: ${str(c.tag)},
+    role: ${str(c.role)},
+    serveur: ${str(c.serveur)},
+    membres: ${str(c.membres)},
+    enLigne: ${str(c.enLigne)},
+    statut: ${str(c.statut)},
+    connexion: ${str(c.connexion)},
+    avatar: ${str(c.avatar)},
+    banniere: ${str(c.banniere)},
   },
 
   projets: [
@@ -469,6 +556,7 @@ function openEditor() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderProfile();
+  renderCard();
   renderProjects();
   renderBots();
   renderResults();
@@ -476,6 +564,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCopy();
   initBoot();
   initReveal();
+  initClock();
 
   const year = q("#year");
   if (year) year.textContent = new Date().getFullYear();

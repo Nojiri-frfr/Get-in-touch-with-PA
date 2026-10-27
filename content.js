@@ -8,6 +8,19 @@ window.SITE = {
     langue: "FR",
   },
 
+  carte: {
+    label: "PROFIL DISCORD",
+    tag: "FR",
+    role: "PROPRIÉTAIRE · LA PLACE DE PA",
+    serveur: "Get in Touch with Primary Asset",
+    membres: "32",
+    enLigne: "6",
+    statut: "HORS LIGNE",
+    connexion: "il y a 4 heures",
+    avatar: "a_f705e34dc608640dee48dd7209bcf333",
+    banniere: "a_b4a9a9f12397b28c694973b927e2f6b0",
+  },
+
   projets: [
     {
       nom: "Chell",
