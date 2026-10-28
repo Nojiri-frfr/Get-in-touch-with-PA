@@ -18,7 +18,9 @@ Identité affichée : **Primary Asset** · Discord `1156589290252419212`
 
 ## En ligne
 
-Site publié via GitHub Pages : **https://nojiri-frfr.github.io/Get-in-touch-with-PA/**
+Site publié sur **https://primary-asset.fr** (domaine principal) ; **https://primary-asset.com**
+redirige en 301 vers le `.fr` via Cloudflare. L'ancienne adresse
+`https://nojiri-frfr.github.io/Get-in-touch-with-PA/` redirige aussi vers le domaine.
 
 Chaque `git push` sur `main` redéploie le site en une trentaine de secondes (source : branche
 `main`, racine du dépôt). Le fichier `.nojekyll` évite tout traitement Jekyll.
@@ -26,6 +28,23 @@ Chaque `git push` sur `main` redéploie le site en une trentaine de secondes (so
 Le mode `#edition` fonctionne aussi en ligne, mais il ne modifie que le navigateur : il faut
 télécharger le `content.js` généré, le déposer dans le dossier local, puis commit + push pour que
 la version publique change.
+
+## Domaine et DNS
+
+Les deux zones sont gérées chez Cloudflare (nameservers `carol` / `jack.ns.cloudflare.com`) :
+
+| Enregistrement | Valeur | Proxy |
+|---|---|---|
+| `A @` (×4) | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` | DNS only |
+| `AAAA @` (×4) | `2606:50c0:8000::153`, `...:8001::153`, `...:8002::153`, `...:8003::153` | DNS only |
+| `CNAME www` | `nojiri-frfr.github.io` | DNS only |
+
+Le proxy Cloudflare doit rester **désactivé** (nuage gris) sur le `.fr`, sinon GitHub Pages ne
+peut pas générer son certificat HTTPS. Le `.com` est proxifié et sert uniquement une Redirect Rule
+301 vers `https://primary-asset.fr` (chemin et query string conservés).
+
+Le fichier `CNAME` du dépôt contient le domaine principal : c'est lui qui déclare le domaine
+personnalisé dans GitHub Pages.
 
 ## Lancer en local
 
