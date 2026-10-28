@@ -228,14 +228,25 @@ function paintPresence(data) {
 
   q(".dcard-live")?.classList.toggle("is-off", data.discord_status === "offline");
 
-  const activity = (data.activities || []).find((item) => item.name);
+  const activities = data.activities || [];
+  const current = activities.find((item) => item.type !== 2 && item.type !== 4 && item.name);
+  const custom = activities.find((item) => item.type === 4);
+
+  let activite = "Aucune";
+  if (data.listening_to_spotify && data.spotify) {
+    const { song, artist } = data.spotify;
+    activite = song && artist ? `Spotify · ${song} — ${artist}` : "Spotify";
+  } else if (current) {
+    activite = current.name;
+  } else if (custom && custom.state) {
+    activite = custom.state;
+  }
+
   const label = q("#dc-connexion-k");
   if (label) label.textContent = "Activité";
 
   const value = q("#dc-connexion");
-  if (value) {
-    value.textContent = data.listening_to_spotify ? "Spotify" : activity ? activity.name : "Aucune";
-  }
+  if (value) value.textContent = activite;
 
   const text = q("#dc-live-text");
   if (text) {

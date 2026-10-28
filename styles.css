@@ -1113,6 +1113,10 @@ section {
   font-weight: 600;
   text-align: right;
   color: #e7eef7;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dcard-row .v .on {
@@ -1176,6 +1180,8 @@ section {
 
   .dcard-row .v {
     text-align: left;
+    white-space: normal;
+    overflow: visible;
   }
 }
 
