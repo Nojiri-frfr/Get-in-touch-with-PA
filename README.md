@@ -12,6 +12,9 @@ Identité affichée : **Primary Asset** · Discord `1156589290252419212`
 |---|---|
 | `content.js` | **Tout le contenu à modifier** : profil, carte Discord, projets, bios, bots, résultats |
 | `index.html` | Structure de la page |
+| `confidentialite.html` | Politique de confidentialité (RGPD) |
+| `cookies.html` | Politique de cookies |
+| `conditions.html` | Conditions générales d'utilisation |
 | `app.js` | Affichage et interactions (à ne pas toucher pour changer les textes) |
 | `styles.css` | Thème, mise en page, animations |
 | `icon.svg` | Favicon |
