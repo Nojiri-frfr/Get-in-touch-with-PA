@@ -48,13 +48,13 @@ window.SITE = {
     },
     {
       nom: "Eminium",
-      bio: "Serveur Minecraft PVP Faction sous launcher personnalisé, avec un système de factions et d'économie. Le projet connait une baisse de joueurs",
+      bio: "Serveur Minecraft PVP Faction sous launcher personnalisé, avec un système de factions et d'économie. Le projet connaît une baisse de joueurs.",
       tags: ["Serveur", "Minecraft"],
       lien: "https://eminium.ovh",
     },
     {
       nom: "NationsEmpire",
-      bio: "Serveur Minecraft Semi RP, avec un système de nations et d'économie. Le projet est en Beta",
+      bio: "Serveur Minecraft Semi RP, avec un système de nations et d'économie. Le projet est en bêta.",
       tags: ["Jeu", "Minecraft"],
       lien: "https://nationsempire.eminium.ovh/",
     },
@@ -87,7 +87,7 @@ window.SITE = {
       titre: "Chell",
       detail: "Bot Discord français orienté modération et outils communautaires.",
       lien: "https://Chell.fr",
-      etiquette: "Projet Principal,Bot",
+      etiquette: "Projet principal,Bot",
     },
     {
       titre: "Botillon",

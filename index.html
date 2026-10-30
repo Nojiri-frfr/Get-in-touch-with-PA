@@ -8,7 +8,8 @@
       name="description"
       content="Portfolio Discord de Primary Asset : projets, bots, communautés et contact. Discord : 1156589290252419212."
     />
-    <meta name="theme-color" content="#07090c" />
+    <meta name="theme-color" content="#0c0d1b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)" />
     <link rel="canonical" href="https://primary-asset.fr/" />
     <meta name="color-scheme" content="dark light" />
     <meta property="og:type" content="profile" />
@@ -18,11 +19,23 @@
       content="Projets, bots, communautés et contact de Primary Asset."
     />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:image" content="https://primary-asset.fr/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Primary Asset — Portfolio Discord" />
+    <meta name="twitter:image" content="https://primary-asset.fr/og-image.png" />
     <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <meta property="og:site_name" content="Primary Asset" />
+    <meta property="og:url" content="https://primary-asset.fr/" />
 
+    <script>try{var t=localStorage.getItem("pa-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}catch(e){}</script>
     <link rel="stylesheet" href="assets/fonts/fonts.css" />
     <link rel="stylesheet" href="styles.css" />
-    <noscript><style>[data-reveal]{opacity:1;transform:none}</style></noscript>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"Primary Asset","url":"https://primary-asset.fr/","inLanguage":"fr","author":{"@type":"Person","name":"Primary Asset","sameAs":["https://discord.com/users/1156589290252419212"]}}
+    </script>
+    <noscript><style>[data-reveal]{opacity:1;transform:none}.boot{display:none}</style></noscript>
   </head>
 
   <body>
@@ -45,6 +58,7 @@
 
         <nav class="nav" aria-label="Navigation principale">
           <a href="#projets">Projets</a>
+          <a href="#carte">Profil</a>
           <a href="#bots">Bots</a>
           <a href="#resultats">Résultats</a>
           <a href="#contact">Contact</a>
@@ -63,77 +77,56 @@
 
     <main id="main">
       <section id="top" class="hero wrap">
-        <p class="eyebrow">Portfolio Discord · FR</p>
-        <h1 id="titre">Primary <span class="slash">/</span> Asset</h1>
-        <p class="lede" id="accroche">
-          Je construis des bots et des sites, et je fais vivre des communautés Discord.
-          Toujours un projet en cours, toujours quelque chose à tester.
-        </p>
+        <div class="hero-txt">
+          <p class="eyebrow">Portfolio Discord · FR</p>
+          <h1 id="titre">Primary <span class="slash">/</span> Asset</h1>
+          <p class="lede" id="accroche">
+            Je construis des bots et des sites, et je fais vivre des communautés Discord.
+            Toujours un projet en cours, toujours quelque chose à tester.
+          </p>
 
-        <div class="badges">
-          <span class="badge" id="pseudo">@primary-asset</span>
-          <span class="badge" id="badge-id">1156589290252419212</span>
-          <span class="badge">Bots Discord</span>
-          <span class="badge">Communautés</span>
+          <div class="badges">
+            <span class="badge" id="pseudo">@primary-asset</span>
+            <span class="badge" id="badge-id">1156589290252419212</span>
+          </div>
+
+          <div class="cta">
+            <a class="btn btn-primary" data-discord href="https://discord.com/users/1156589290252419212" rel="me noopener">Me contacter</a>
+            <a class="btn" href="#projets">Voir les projets</a>
+            <a class="btn btn-ghost" href="#resultats">Les résultats</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><b id="stat-projects">0</b><small>projets</small></div>
+            <div class="stat"><b id="stat-bots">0</b><small>bots et communautés</small></div>
+            <div class="stat"><b id="stat-results">0</b><small>liens publics</small></div>
+            <div class="stat"><b id="stat-langue">FR</b><small>langue</small></div>
+          </div>
         </div>
 
-        <div class="cta">
-          <a class="btn btn-primary" data-discord href="https://discord.com/users/1156589290252419212" rel="me noopener">
-            Me contacter
-          </a>
-          <a class="btn" href="#projets">Voir les projets</a>
-          <a class="btn btn-ghost" href="#resultats">Les résultats</a>
-        </div>
-
-        <div class="stats">
-          <div class="stat"><b id="stat-projects">0</b><small>Projets</small></div>
-          <div class="stat"><b id="stat-bots">0</b><small>Bots &amp; communautés</small></div>
-          <div class="stat"><b id="stat-results">0</b><small>Résultats web</small></div>
-          <div class="stat"><b id="stat-langue">FR</b><small>Langue</small></div>
-        </div>
-      </section>
-
-      <section id="carte" class="wrap" data-reveal>
-        <div class="sec-head">
-          <h2>Profil Discord</h2>
-          <span class="sec-note">Carte de visite</span>
-        </div>
-
-        <article class="dcard">
-          <header class="dcard-top">
-            <span class="dcard-brand"><span class="dcard-mark">▣</span> DISCORD <span class="dcard-slash">//</span> 01</span>
-            <span class="dcard-live"><i class="dcard-dot"></i> LIVE</span>
-          </header>
-
-          <div class="dcard-visual">
-            <div class="dcard-banner" id="dc-banner" aria-hidden="true"></div>
+        <article id="carte" class="dcard" aria-label="Profil Discord">
+          <div class="dcard-banner" id="dc-banner" aria-hidden="true"></div>
+          <div class="dcard-head">
             <div class="dcard-avatar-wrap">
-              <span class="dcard-glow" aria-hidden="true"></span>
               <span class="dcard-avatar" id="dc-avatar" role="img" aria-label="Avatar Discord de Primary Asset"></span>
               <span class="dcard-status" id="dc-dot" aria-hidden="true"></span>
             </div>
+            <button id="dc-live-toggle" class="dcard-switch" type="button" aria-pressed="false">
+              <span class="dcard-switch-dot" aria-hidden="true"></span>
+              <span id="dc-live-text">Activer le statut en direct</span>
+            </button>
           </div>
 
-          <div class="dcard-id">
-            <p class="dcard-label" id="dc-label">PROFIL DISCORD</p>
-            <p class="dcard-num" id="dc-id">1156589290252419212</p>
-            <p class="dcard-clock">
-              <span id="dc-date">2026-01-01</span>
-              <span id="dc-time">00:00:00</span>
+          <div class="dcard-body">
+            <h2 class="dcard-name"><span id="dc-name">Primary Asset</span> <span class="dcard-tagpill" id="dc-tag">FR</span></h2>
+            <p class="dcard-handle" id="dc-handle">@primary-asset</p>
+            <p class="dcard-meta">
               <span class="dcard-state" id="dc-state">HORS LIGNE</span>
-            </p>
-
-            <p class="dcard-live-row">
-              <button id="dc-live-toggle" class="dcard-switch" type="button" aria-pressed="false">
-                <span class="dcard-switch-dot" aria-hidden="true"></span>
-                <span id="dc-live-text">Activer le statut en direct</span>
-              </button>
+              <span class="dcard-clock"><span id="dc-date">2026-01-01</span> <span id="dc-time">00:00:00</span></span>
             </p>
           </div>
 
           <div class="dcard-rows">
-            <div class="dcard-row"><span class="k">Statut</span><span class="v" id="dc-statut">HORS LIGNE</span></div>
-            <div class="dcard-row"><span class="k">Tag de serveur</span><span class="v" id="dc-tag">FR</span></div>
             <div class="dcard-row"><span class="k">Rôle</span><span class="v" id="dc-role">—</span></div>
             <div class="dcard-row"><span class="k">Serveur</span><span class="v" id="dc-serveur">—</span></div>
             <div class="dcard-row"><span class="k">Membres</span><span class="v" id="dc-membres">—</span></div>
@@ -141,9 +134,9 @@
           </div>
 
           <footer class="dcard-foot">
-            <span><b id="dc-projets">0</b> PROJETS</span>
-            <span><b id="dc-resultats">0</b> RÉSULTATS</span>
-            <span><b id="dc-langue">FR</b> LANGUE</span>
+            <span><b id="dc-projets">0</b> projets</span>
+            <span><b id="dc-resultats">0</b> liens</span>
+            <span><b id="dc-langue">FR</b> langue</span>
           </footer>
         </article>
       </section>

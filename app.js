@@ -11,6 +11,12 @@ const SITE = window.SITE || {
   resultats: [],
 };
 
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+  del(k) { try { localStorage.removeItem(k); } catch {} },
+};
+
 const q = (sel, root = document) => root.querySelector(sel);
 const qa = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -36,7 +42,10 @@ function isExternal(url) {
 function decorateLink(node, url) {
   node.href = url;
   node.rel = "noopener";
-  if (isExternal(url)) node.target = "_blank";
+  if (isExternal(url)) {
+    node.target = "_blank";
+    node.append(el("span", "sr-only", " (nouvel onglet)"));
+  }
   return node;
 }
 
@@ -152,7 +161,8 @@ function renderCard() {
     }
   }
 
-  set("#dc-label", c.label || "PROFIL DISCORD");
+  set("#dc-name", SITE.profil.nom);
+  set("#dc-handle", SITE.profil.pseudo);
   set("#dc-id", SITE.profil.discordId);
   set("#dc-statut", c.statut || "HORS LIGNE");
   set("#dc-state", c.statut || "HORS LIGNE");
@@ -306,7 +316,7 @@ function startPresence(persist = true) {
   if (!btn) return;
 
   btn.setAttribute("aria-pressed", "true");
-  if (persist) localStorage.setItem("pa-live", "1");
+  if (persist) store.set("pa-live", "1");
 
   const text = q("#dc-live-text");
   if (text) text.textContent = "Connexion au direct…";
@@ -325,7 +335,7 @@ function stopPresence(keepLabel = false) {
 
   clearInterval(liveTimer);
   liveTimer = null;
-  localStorage.removeItem("pa-live");
+  store.del("pa-live");
   resetPresence();
 
   if (!keepLabel) {
@@ -353,7 +363,7 @@ function initPresence() {
     if (!document.hidden && liveTimer) refreshPresence();
   });
 
-  if (localStorage.getItem("pa-live") === "1") startPresence(false);
+  if (store.get("pa-live") === "1") startPresence(false);
 }
 
 function renderProjects() {
@@ -367,8 +377,13 @@ function renderProjects() {
     const url = linkFor(project.lien);
     const card = decorateLink(el("a", "card"), url);
 
-    card.append(el("span", "idx", pad(i + 1)));
-    card.append(el("h3", null, project.nom || "Sans titre"));
+    const name = project.nom || "Sans titre";
+    const hue = [...name].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) % 360, 7);
+    const top = el("div", "card-top");
+    const mark = el("span", "mark", name.trim().charAt(0).toUpperCase());
+    mark.style.setProperty("--h", hue);
+    top.append(mark, el("h3", null, name));
+    card.append(top);
 
     const empty = !String(project.bio || "").trim();
     const bio = el("p", empty ? "bio is-empty" : "bio", empty ? "Bio à venir." : project.bio);
@@ -379,6 +394,10 @@ function renderProjects() {
       const row = el("div", "tags");
       tags.forEach((tag) => row.append(el("span", null, tag)));
       card.append(row);
+    }
+
+    if (isExternal(url)) {
+      try { card.append(el("span", "host", new URL(url).hostname.replace(/^www\./, ""))); } catch {}
     }
 
     frag.append(card);
@@ -398,14 +417,20 @@ function renderBots() {
   const frag = document.createDocumentFragment();
 
   SITE.bots.forEach((bot, i) => {
+    const project = SITE.projets.find((p) => p.nom === bot.nom);
+    const url = project && project.lien ? project.lien : "";
     const li = el("li");
     const body = el("div");
-    body.append(el("b", null, bot.nom || "—"));
+
+    const title = el("b");
+    if (url) title.append(decorateLink(el("a", "name", bot.nom || "—"), url));
+    else title.textContent = bot.nom || "—";
+    body.append(title);
     body.append(el("small", null, bot.detail || ""));
 
     li.append(el("span", "n", pad(i + 1)));
     li.append(body);
-    li.append(el("span", "go", "—"));
+    li.append(url ? decorateLink(el("a", "go", "Voir"), url) : el("span", "go", ""));
     frag.append(li);
   });
 
@@ -430,9 +455,16 @@ function renderResults() {
     body.append(decorateLink(el("a", "name", result.titre || "—"), url));
     body.append(el("small", null, result.detail || ""));
 
+    const labels = String(result.etiquette || "").split(",").map((t) => t.trim()).filter(Boolean);
+    if (labels.length) {
+      const row = el("div", "tags res-tags");
+      labels.forEach((t) => row.append(el("span", null, t)));
+      body.append(row);
+    }
+
     li.append(el("span", "n", pad(i + 1, 3)));
     li.append(body);
-    li.append(decorateLink(el("a", "go", result.etiquette || "Voir"), url));
+    li.append(decorateLink(el("a", "go", "Voir"), url));
     frag.append(li);
   });
 
@@ -445,15 +477,16 @@ function renderResults() {
 function initTheme() {
   const root = document.documentElement;
   const btn = q("#theme");
-  const stored = localStorage.getItem("pa-theme");
+  const stored = store.get("pa-theme");
   const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
 
   root.dataset.theme = stored || (prefersLight ? "light" : "dark");
+  btn?.setAttribute("aria-label", root.dataset.theme === "dark" ? "Passer en thème clair" : "Passer en thème sombre");
 
   btn?.addEventListener("click", () => {
     const next = root.dataset.theme === "dark" ? "light" : "dark";
     root.dataset.theme = next;
-    localStorage.setItem("pa-theme", next);
+    store.set("pa-theme", next);
     btn.setAttribute(
       "aria-label",
       next === "dark" ? "Passer en thème clair" : "Passer en thème sombre"
@@ -519,6 +552,27 @@ function initReveal() {
   );
 
   targets.forEach((t) => io.observe(t));
+}
+
+function initNavSpy() {
+  const links = qa(".nav a[href^='#']");
+  if (!links.length || !("IntersectionObserver" in window)) return;
+
+  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((a) => a.removeAttribute("aria-current"));
+        map.get(entry.target.id)?.setAttribute("aria-current", "true");
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  map.forEach((_, id) => {
+    const section = document.getElementById(id);
+    if (section) io.observe(section);
+  });
 }
 
 const str = (v) => JSON.stringify(v == null ? "" : String(v));
@@ -739,13 +793,16 @@ function openEditor() {
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) overlay.remove();
   });
-  document.addEventListener(
-    "keydown",
-    (e) => {
-      if (e.key === "Escape" && overlay.isConnected) overlay.remove();
-    },
-    { once: true }
-  );
+  const onKey = (e) => {
+    if (e.key === "Escape") overlay.remove();
+  };
+  document.addEventListener("keydown", onKey);
+  new MutationObserver((_, obs) => {
+    if (!overlay.isConnected) {
+      document.removeEventListener("keydown", onKey);
+      obs.disconnect();
+    }
+  }).observe(document.body, { childList: true });
 
   document.body.append(overlay);
   nom.input.focus();
@@ -754,17 +811,13 @@ function openEditor() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderProfile();
-  renderCard();
-  renderProjects();
-  renderBots();
-  renderResults();
-  initTheme();
-  initCopy();
-  initBoot();
-  initReveal();
-  initClock();
-  initPresence();
+  // Chaque bloc est isolé : une erreur dans l'un ne bloque plus le reste de la page.
+  [
+    renderProfile, renderCard, renderProjects, renderBots, renderResults,
+    initTheme, initCopy, initBoot, initReveal, initNavSpy, initClock, initPresence,
+  ].forEach((fn) => {
+    try { fn(); } catch (err) { console.error(fn.name, err); }
+  });
 
   const year = q("#year");
   if (year) year.textContent = new Date().getFullYear();

@@ -144,3 +144,19 @@ Sans cette activation, la page ne contacte aucun serveur tiers (pas de requête 
 Mise en page inspirée de [joynix28.me](https://joynix28.me/), refaite en HTML/CSS/JS simple et
 adaptée à l'identité « Primary Asset ». Code, textes et assets propres à ce dépôt : aucun fichier
 du site d'origine n'est copié.
+
+## Changements de la v2
+
+- **Robustesse** : `localStorage` protégé (le site ne plante plus si le navigateur le bloque) ; chaque bloc JS est isolé, une erreur n'empêche plus l'affichage du reste ; l'écran de chargement disparaît si JavaScript est désactivé.
+- **Corrections** : balisage HTML cassé dans `confidentialite.html` (`<p>` non fermé) ; touche Échap de l'éditeur qui ne marchait qu'une fois ; fautes dans `content.js` (« connaît », « bêta », « Projet principal »).
+- **Mobile** : la navigation ne disparaît plus sous 820 px, elle passe sur une ligne défilante.
+- **Navigation** : section active surlignée, lien « Profil » ajouté, liens externes annoncés « nouvel onglet » aux lecteurs d'écran.
+- **Listes** : les étiquettes des résultats sont séparées (plus de virgules dans un lien) ; les bots et communautés renvoient vers leur projet.
+- **Thème** : appliqué avant l'affichage (plus de flash sombre pour les visiteurs en mode clair), `theme-color` clair/sombre.
+- **SEO / partage** : `og:url`, `og:image` (`og-image.png`), cartes Twitter, JSON-LD, `404.html`, `sitemap.xml` mis à jour.
+- **Dépôt** : `_gitignore` et `_nojekyll` renommés en `.gitignore` et `.nojekyll`.
+- **Impression** : feuille de style dédiée.
+
+## Design v3
+
+Palette indigo nuit + accent violet (clair/sombre), carte Discord façon fenêtre de profil placée dans l'accueil, projets en grille à tailles variées (le premier projet de `content.js` est mis en avant : mets-y ton projet principal), pastilles de couleur générées depuis le nom du projet, domaine affiché sur chaque fiche. Le champ `label` de la carte n'est plus affiché.
